@@ -1,231 +1,324 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emmanuel | Data &amp; Process Analyst</title>
+<meta name="description" content="Portfolio of Emmanuel, a Data &amp; Process Analyst working in Excel, Power BI, SQL, financial modelling and automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#f3f5f7; --card:#ffffff; --ink:#0e1a2b; --muted:#4f5d70; --line:#d5dbe3;
+  --green:#107c41; --green-ink:#ffffff; --yellow:#f2c811; --grid:rgba(14,26,43,.07);
+  --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#0b1320;--card:#121d2f;--ink:#eaf0f7;--muted:#a3b0c2;--line:#26344a;--green:#2fbf71;--green-ink:#06210f;--grid:rgba(234,240,247,.06)}
+}
+:root[data-theme="dark"]{--paper:#0b1320;--card:#121d2f;--ink:#eaf0f7;--muted:#a3b0c2;--line:#26344a;--green:#2fbf71;--green-ink:#06210f;--grid:rgba(234,240,247,.06)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1160px,100% - 2.5rem);margin-inline:auto}
+.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:var(--yellow);color:#000;padding:.5rem 1rem;z-index:99}
 
-<html>
-	<head>
-		<title>Ejiogu Emmanuel's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+.brand{font:800 1.15rem var(--head);text-decoration:none}
+.nav ul{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0;align-items:center}
+.nav a.l{text-decoration:none;font-weight:600;color:var(--muted)}
+.nav a.l:hover{color:var(--ink)}
+.icon-btn{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);cursor:pointer}
+.icon-btn:hover{border-color:var(--green)}
+.icon-btn svg{width:18px;height:18px;fill:currentColor}
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+/* hero: a worksheet */
+.hero{position:relative;padding:4.5rem 0 3.5rem;overflow:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:56px 56px}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(14,26,43,.35)}
+.fbar{display:flex;gap:.75rem;align-items:center;padding:.55rem .9rem;border-bottom:1px solid var(--line);background:var(--paper);font-size:.9rem;color:var(--muted);overflow:hidden;white-space:nowrap}
+.fbar b{color:var(--green);font-style:italic;font-family:var(--head)}
+.fbar code{font:inherit;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
+.cols{display:grid;grid-template-columns:2.5rem 1fr;}
+.rows{display:flex;flex-direction:column;background:var(--paper);border-right:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center}
+.rows span{flex:1;padding:.3rem 0;border-bottom:1px solid var(--line)}
+.cell{padding:clamp(1.5rem,4vw,3.25rem)}
+.cell h1{font:800 clamp(2.6rem,8vw,5.6rem)/.98 var(--head);letter-spacing:-.03em;margin:0 0 1.25rem}
+.cell h1 mark{background:linear-gradient(transparent 62%,var(--yellow) 62%);color:inherit;padding:0 .08em}
+.role{font:700 1.15rem var(--head);margin:0 0 .6rem}
+.lede{max-width:62ch;color:var(--muted);margin:0 0 1.75rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.3rem;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--green);background:var(--green);color:var(--green-ink);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.skills{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:1.75rem 0 0}
+.skills li{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:.25rem .7rem;font-size:.95rem;font-weight:600}
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>EJIOGU EMMANUEL'S PORTFOLIO<br />
-						</h1>
-						<p> A skilled and detail-oriented data analyst. Proficient in Excel, SQL, Powerbi and Tableau <a href="https://www.linkedin.com/in/emmanuel-ejiogu-b3184416b/">@emmanuel</a></p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+/* projects */
+section.projects{padding:4rem 0}
+.sec-h{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.sec-h h2{font:800 clamp(1.9rem,4vw,2.8rem)/1.1 var(--head);letter-spacing:-.02em;margin:0}
+.sec-h p{margin:0;color:var(--muted);max-width:46ch}
+.featured{display:grid;grid-template-columns:1.05fr 1fr;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:12px;overflow:hidden;margin-bottom:1.75rem}
+.featured .body{padding:clamp(1.5rem,3vw,2.5rem);display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.featured h3{font:800 clamp(1.6rem,3vw,2.2rem)/1.15 var(--head);margin:0;letter-spacing:-.015em}
+.featured p{margin:0;color:var(--muted)}
+.featured .shot{display:block;background:var(--paper);min-height:260px}
+.featured .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.badge{align-self:flex-start;background:var(--yellow);color:#1a1400;font-weight:700;font-size:.85rem;padding:.15rem .65rem;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--green);transform:translateY(-3px)}
+.card .shot{aspect-ratio:16/10;background:var(--paper);display:block;overflow:hidden;border-bottom:1px solid var(--line)}
+.card .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.card .body{padding:1.25rem 1.35rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.card h3{font:700 1.2rem/1.25 var(--head);margin:0}
+.card h3 a{text-decoration:none}
+.card h3 a:hover{text-decoration:underline;text-decoration-color:var(--green);text-underline-offset:4px}
+.card p{margin:0;color:var(--muted);font-size:1rem}
+.more{margin-top:auto;padding-top:.5rem;font-weight:600;color:var(--green);text-decoration:none}
+.more:hover{text-decoration:underline;text-underline-offset:4px}
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Welcome</a>
-					</header>
+/* contact */
+.contact{background:#0a2540;color:#fff;padding:4rem 0 2.5rem}
+.contact h2{font:800 clamp(1.9rem,4vw,2.8rem)/1.1 var(--head);margin:0 0 .75rem;letter-spacing:-.02em;color:#fff}
+.contact .lede{color:#d3dded}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.18)}
+.cgrid h3{font:700 .95rem var(--head);margin:0 0 .35rem;color:var(--yellow)}
+.cgrid p,.cgrid a{margin:0;color:#fff;text-decoration:none;word-break:break-word}
+.cgrid a:hover{text-decoration:underline}
+.soc{display:flex;gap:.6rem}
+.soc a{display:inline-grid;place-items:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);border-radius:50%}
+.soc a:hover{background:var(--yellow);border-color:var(--yellow)}
+.soc a:hover svg{fill:#000}
+.soc svg{width:20px;height:20px;fill:#fff}
+.copy{margin-top:2.5rem;font-size:.9rem;color:#aebbd0}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Projects</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/emmanuel-ejiogu-b3184416b/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
-							<li><a href="https://github.com/EjioguUgochukwu18" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+@media (max-width:820px){
+  .featured{grid-template-columns:1fr}
+  .featured .shot{order:-1;min-height:0;aspect-ratio:16/10}
+  .nav .hide-s{display:none}
+  .cols{grid-template-columns:1.8rem 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<noscript><style>.theme-btn{display:none}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
 
-				<!-- Main -->
-					<div id="main">
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Emmanuel</a>
+    <ul>
+      <li class="hide-s"><a class="l scrolly" href="#projects">Projects</a></li>
+      <li class="hide-s"><a class="l scrolly" href="#contact">Contact</a></li>
+      <li><a class="icon-btn" href="https://www.linkedin.com/in/emmanuel-ejiogu-b3184416b/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.55h.06c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.86 2.66 4.86 6.12V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.69V21h-4V9.75Z"/></svg></a></li>
+      <li><a class="icon-btn" href="https://github.com/EjioguUgochukwu18" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a></li>
+      <li><button class="icon-btn theme-btn" id="theme" type="button" aria-label="Toggle light and dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg></button></li>
+    </ul>
+  </div>
+</header>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2><a href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main">Route Optimisation & Scenario Analysis Model<br />
-									</a></h2>
-									<p>I built a data-driven route optimisation and scenario analysis model to support operational planning and decision-making. Using Excel, I structured over 1,000 records covering requests, routes, model inputs and scenarios. The solution compares route options, evaluates costs and efficiencies, and transforms complex operational data into clear, actionable business insights.</p>
-								</header>
-								<a href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main" class="image main"><img src="images/ROSAM.png" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main" class="button large">View Project</a></li>
-								</ul>
-							</article>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="sheet">
+        <div class="fbar"><b>fx</b><code>=ANALYST("Emmanuel", Data, Process, Finance)</code></div>
+        <div class="cols">
+          <div class="rows" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+          <div class="cell">
+            <h1>Hi, I'm <mark>Emmanuel</mark> 👋</h1>
+            <p class="role">Data &amp; Process Analyst</p>
+            <p class="lede">I turn complex data into clear insights, build analytical solutions, and solve real business problems using Excel, Power BI, SQL and automation.</p>
+            <div class="btns">
+              <a class="btn scrolly" href="#projects">See my projects</a>
+              <a class="btn ghost scrolly" href="#contact">Get in touch</a>
+            </div>
+            <ul class="skills" aria-label="Skills">
+              <li>Financial modelling</li><li>Business intelligence</li><li>Excel</li><li>Power BI</li><li>SQL</li><li>Process improvement</li><li>Automation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main">Dangote Cement Equity Model Research<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main" class="image fit"><img src="images/DANGCEM.png" alt="" /></a>
-									<p>Developed an Excel-based equity research model for Dangote Cement, combining historical financial analysis, five-year forecasting, DCF valuation and comparable company analysis. The project evaluates profitability, growth, leverage, cash flow and valuation while incorporating sensitivity analysis, investment risks and catalysts to generate a structured, evidence-based investment recommendation.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-								<header>
-									<h2><a href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD">NORTHWIND TRADERS<br />
-									</a></h2>
-								</header>
-								<a href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD" class="image main"><img src="images/NORTHWIND.jpg" alt="" /></a>
-								<p>Visualization of Northwind Traders Dataset, details like average days to ship, net revenue by country, Top/Bottom 5 products and employee performance.</p>
-								<ul class="actions special">
-									<li><a href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD" class="button large">View Project</a></li>
-								</ul>
-							</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD">Customer Demographics and Insights dashboard<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD" class="image fit"><img src="images/CR 2.jpg" alt="" /></a>
-									<p>As part of the PWC Switzerland Job Simulation tasks, this dashboard contains KPIs such as Total Customers, Churn rate, etc. The dashboard also contains customer service analysis, customer information analysis and demography analysis.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD">Diversity and Inclusion HR Dashboard<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD" class="image fit"><img src="images/D&I 3.jpg" alt="" /></a>
-									<p>As part of the PWC Switzerland Job Simulation tasks, this dashboard contains insights such as turnover rate, promotion rate by gender and demographic, average performance rating, etc. 
-										The dashboard also contains general overview of all important measure and diversity analysis.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS">USA Airlines Flight Delay Visualization<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS" class="image fit"><img src="images/USA AIRLINE.jpg" alt="" /></a>
-									<p>USA AIRLINE DELAY Dataset Visualization from 2003 to 2022. Key insights on airport reliability, total flights, and causes for canceled flights.
-									</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/BOOK-SALES">Book Sales Visualization<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/BOOK-SALES" class="image fit"><img src="images/BOOK SALES.jpg" alt="" /></a>
-									<p>Book Sales Visualization over six months. Key insights on total sales by currency, total sales  by product, and monthly sales.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/BOOK-SALES" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD">Call Center Performace Visualization<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD" class="image fit"><img src="images/CALL CENTER 001.jpg" alt="" /></a>
-									<p>A performance visualization dashboard over the course of three months of agents in a telecommunication company. Includes crucial information on average handling time, average speed of answer, satisfaction rating by topic etc.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/COVID-19">CORONA VIRUS GLOBAL VIEW<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/COVID-19" class="image fit"><img src="images/COVID.jpg" alt="" /></a>
-									<p>Visualization of Corona Virus Pandemic as at 5 September 2023, details like number of countries affected, confirmed cases, confirmed deaths and total vaccine doses administered.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/COVID-19" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES">ADIDAS US INTERACTIVE SALES DASHBOARD WITH EXCEL<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES" class="image fit"><img src="images/ADIDAS.jpg" alt="" /></a>
-									<p>An Interactive visualization of Adidas US Sales as at July 2021, details like sales region, channels, retailers and products performance.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES">PHARMACEUTICAL SALES DASHBOARD<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES" class="image fit"><img src="images/PHARMACY.jpg" alt="" /></a>
-									<p>An Interactive visualization of pharmaceutical sales from 2017 - 2020, details like top selling products, sales channels, sales representative and products performance.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES">SUPERMARKET SALES DASHBOARD<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES" class="image fit"><img src="images/SUPERMARKET.jpg" alt="" /></a>
-									<p>An Interactive visualization of a supermarket sales, details like profits, product ratings, top sales channel and customer type.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES" class="button">View Project</a></li>
-									</ul>
-								</article>
-							</section>
-					</div>
+  <section class="projects" id="projects">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Projects</h2>
+        <p>Models, dashboards and analyses. Each links to its GitHub repository.</p>
+      </div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>Lagos, Nigeria<br />
-								</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p>(+234) 903-3971-972</p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p>ugoemma32@gmail.com</p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									
-									<li><a href="https://www.linkedin.com/in/emmanuel-ejiogu-b3184416b/" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/EjioguUgochukwu18" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+      <article class="featured">
+        <div class="body">
+          <span class="badge">Featured</span>
+          <h3><a href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main" style="text-decoration:none">Route Optimisation &amp; Scenario Analysis Model</a></h3>
+          <p>I built a data-driven route optimisation and scenario analysis model to support operational planning and decision-making. Using Excel, I structured over 1,000 records covering requests, routes, model inputs and scenarios. The solution compares route options, evaluates costs and efficiencies, and transforms complex operational data into clear, actionable business insights.</p>
+          <div class="btns"><a class="btn" href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main">View project</a></div>
+        </div>
+        <a class="shot" href="https://github.com/EjioguUgochukwu18/Route-Optimisation-Scenario-Analysis-Model/tree/main" tabindex="-1" aria-hidden="true"><img src="images/ROSAM.png" alt="" loading="lazy"></a>
+      </article>
 
-				<!-- Copyright 
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
-					-->
+      <div class="grid">
 
-			</div>
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main" tabindex="-1" aria-hidden="true"><img src="images/DANGCEM.png" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main">Dangote Cement Equity Model Research</a></h3>
+            <p>Developed an Excel-based equity research model for Dangote Cement, combining historical financial analysis, five-year forecasting, DCF valuation and comparable company analysis. The project evaluates profitability, growth, leverage, cash flow and valuation while incorporating sensitivity analysis, investment risks and catalysts to generate a structured, evidence-based investment recommendation.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/DANGCEM-Equity-Model/tree/main">View project</a>
+          </div>
+        </article>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD" tabindex="-1" aria-hidden="true"><img src="images/NORTHWIND.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD">Northwind Traders</a></h3>
+            <p>Visualization of Northwind Traders Dataset, details like average days to ship, net revenue by country, Top/Bottom 5 products and employee performance.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/NORTHWIND-TRADERS-DASHBOARD">View project</a>
+          </div>
+        </article>
 
-	</body>
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD" tabindex="-1" aria-hidden="true"><img src="images/CR%202.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD">Customer Demographics and Insights Dashboard</a></h3>
+            <p>As part of the PWC Switzerland Job Simulation tasks, this dashboard contains KPIs such as Total Customers, Churn rate, etc. The dashboard also contains customer service analysis, customer information analysis and demography analysis.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/CUSTOMER-RETENTION-DASHBOARD">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD" tabindex="-1" aria-hidden="true"><img src="images/D%26I%203.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD">Diversity and Inclusion HR Dashboard</a></h3>
+            <p>As part of the PWC Switzerland Job Simulation tasks, this dashboard contains insights such as turnover rate, promotion rate by gender and demographic, average performance rating, etc. The dashboard also contains general overview of all important measure and diversity analysis.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/DIVERSITY-AND-INCLUSION-HR-DASHBOARD">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS" tabindex="-1" aria-hidden="true"><img src="images/USA%20AIRLINE.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS">USA Airlines Flight Delay Visualization</a></h3>
+            <p>USA AIRLINE DELAY Dataset Visualization from 2003 to 2022. Key insights on airport reliability, total flights, and causes for canceled flights.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/USA-AIRLINE-DELAYS">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/BOOK-SALES" tabindex="-1" aria-hidden="true"><img src="images/BOOK%20SALES.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/BOOK-SALES">Book Sales Visualization</a></h3>
+            <p>Book Sales Visualization over six months. Key insights on total sales by currency, total sales by product, and monthly sales.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/BOOK-SALES">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD" tabindex="-1" aria-hidden="true"><img src="images/CALL%20CENTER%20001.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD">Call Center Performance Visualization</a></h3>
+            <p>A performance visualization dashboard over the course of three months of agents in a telecommunication company. Includes crucial information on average handling time, average speed of answer, satisfaction rating by topic etc.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/CALL-CENTER-DASHBOARD">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/COVID-19" tabindex="-1" aria-hidden="true"><img src="images/COVID.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/COVID-19">Coronavirus Global View</a></h3>
+            <p>Visualization of Corona Virus Pandemic as at 5 September 2023, details like number of countries affected, confirmed cases, confirmed deaths and total vaccine doses administered.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/COVID-19">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES" tabindex="-1" aria-hidden="true"><img src="images/ADIDAS.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES">Adidas US Interactive Sales Dashboard with Excel</a></h3>
+            <p>An Interactive visualization of Adidas US Sales as at July 2021, details like sales region, channels, retailers and products performance.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/ADIDAS-US-SALES">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES" tabindex="-1" aria-hidden="true"><img src="images/PHARMACY.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES">Pharmaceutical Sales Dashboard</a></h3>
+            <p>An Interactive visualization of pharmaceutical sales from 2017 - 2020, details like top selling products, sales channels, sales representative and products performance.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/PHARMACEUTICALSALES">View project</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES" tabindex="-1" aria-hidden="true"><img src="images/SUPERMARKET.jpg" alt="" loading="lazy"></a>
+          <div class="body">
+            <h3><a href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES">Supermarket Sales Dashboard</a></h3>
+            <p>An Interactive visualization of a supermarket sales, details like profits, product ratings, top sales channel and customer type.</p>
+            <a class="more" href="https://github.com/EjioguUgochukwu18/SUPERMARKET-SALES">View project</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's work on your data</h2>
+    <p class="lede">Reach out about analytics, dashboards, financial models or process improvement.</p>
+    <div class="cgrid">
+      <div><h3>Location</h3><p>Lagos, Nigeria</p></div>
+      <div><h3>Phone</h3><p><a href="tel:+2349033971972">(+234) 903-3971-972</a></p></div>
+      <div><h3>Email</h3><p><a href="mailto:ugoemma32@gmail.com">ugoemma32@gmail.com</a></p></div>
+      <div><h3>Social</h3>
+        <div class="soc">
+          <a href="https://www.linkedin.com/in/emmanuel-ejiogu-b3184416b/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.55h.06c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.86 2.66 4.86 6.12V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.69V21h-4V9.75Z"/></svg></a>
+          <a href="https://github.com/EjioguUgochukwu18" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p class="copy">&copy; <span id="yr">2026</span> Emmanuel</p>
+  </div>
+</footer>
+
+<!-- Existing dependencies, kept as before -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script>
+(function ($) {
+  // Smooth scrolling via the existing Scrolly plugin
+  if ($ && $.fn.scrolly) { $('.scrolly').scrolly({ offset: 64 }); }
+
+  // Theme toggle (remembers choice when storage is available)
+  var root = document.documentElement, key = 'theme';
+  try { var saved = localStorage.getItem(key); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('theme').addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(key, next); } catch (e) {}
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})(window.jQuery);
+</script>
+</body>
 </html>
